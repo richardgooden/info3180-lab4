@@ -24,6 +24,20 @@ def home():
 def about():
     """Render the website's about page."""
     return render_template('about.html', name="Mary Jane")
+    
+@app.route('/filelisting/')
+def filelisting():
+    """Render the website's filelisting page."""
+    import os 
+    rootdir = os.getcwd()
+    f = []
+    for subdir, dirs, files in os.walk(rootdir + '/app/static/uploads'):
+        f.extend(files)
+        break
+            
+            
+    return render_template('filelisting.html', filesP = f )    
+   
 
 @app.route('/add-file', methods=['POST', 'GET'])
 def add_file():
