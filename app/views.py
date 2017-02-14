@@ -28,6 +28,8 @@ def about():
 @app.route('/filelisting/')
 def filelisting():
     """Render the website's filelisting page."""
+    if not session.get('logged_in'):
+        abort(401)
     import os 
     rootdir = os.getcwd()
     f = []
